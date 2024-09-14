@@ -1,17 +1,27 @@
+# Unreleased
+
+## Added features
+
+ * Better error messages on column type mismatches (#696).
+
+## Documentation
+ 
+ * Make `runBeamPostgres` and `runBeamPostgresDebug` easier to find (#663).
+
 # 0.5.3.1
 
-# Added features
+## Added features
 
  * Loosen some version bounds
 
 # 0.5.3.0
 
-# Bug fixes
+## Bug fixes
 
  * Make sure lateral join names do not overlap
  * Fix `bool_or`
 
-# Addded features
+## Addded features
 
  * Add `runSelectReturningFirst`
  * `IN (SELECT ...)` syntax via `inQuery_`

@@ -66,6 +66,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.Text.Lazy as TL
 import           Data.Time
+import qualified Data.Time.Format.ISO8601 as Time
 import           Data.Word
 #if !MIN_VERSION_base(4, 11, 0)
 import           Data.Semigroup
