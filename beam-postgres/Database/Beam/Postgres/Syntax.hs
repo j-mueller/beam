@@ -961,10 +961,12 @@ instance IsSql92TableSourceSyntax PgTableSourceSyntax where
 
   tableNamed = PgTableSourceSyntax . fromPgTableName
   tableFromSubSelect s = PgTableSourceSyntax $ emit "(" <> fromPgSelect s <> emit ")"
-  tableFromValues vss = PgTableSourceSyntax . pgParens $
-                        emit "VALUES " <>
-                        pgSepBy (emit ", ")
-                                (map (pgParens . pgSepBy (emit ", ") . map fromPgExpression) vss)
+  tableFromValues _cnt vss =
+      PgTableSourceSyntax . pgParens $
+      emit "VALUES " <>
+      pgSepBy (emit ", ")
+              (map (\vs -> pgParens (pgSepBy (emit ", ")
+                                     (map fromPgExpression vs))) vss)
 
 instance IsSql92ProjectionSyntax PgProjectionSyntax where
   type Sql92ProjectionExpressionSyntax PgProjectionSyntax = PgExpressionSyntax
@@ -1417,4 +1419,3 @@ pgRenderSyntaxScript (PgSyntax mkQuery) =
       where
         quoteIdentifierChar '"' = char8 '"' <> char8 '"'
         quoteIdentifierChar c = char8 c
-
